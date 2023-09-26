@@ -1,0 +1,46 @@
+﻿@page
+@model TouristicGuide.Pages.Guides.CreateModel
+@{
+}
+
+<h1>Create a new guide</h1>
+
+<form method="post">
+    <table>
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="username" value="@Model.GuideInfo.Username"/></td>
+        </tr>
+        <tr>
+            <td>First name</td>
+            <td><input type="text" name="firstName" value="@Model.GuideInfo.FirstName"/></td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td><input type="text" name="lastName" value="@Model.GuideInfo.LastName"/></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="email" value="@Model.GuideInfo.Email"/></td>
+        </tr>
+        <tr>
+            <td>Birthday</td>
+            <td><input type="date" name="birthday" value="@Model.GuideInfo.Birthday.ToString("yyyy-MM-dd")" /></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td><input type="text" name="phone" value="@Model.GuideInfo.Phone"/></td>
+        </tr>
+        <tr>
+            <td>Languages</td>
+            <td><input type="text" name="languages" value="@Model.GuideInfo.Languages"/></td>
+        </tr>
+    </table>
+    <input type="button" href="/" value="Cancel"/>
+    <input type="submit" value="Submit" />
+</form>
+
+@if(Model.ErrorMessage.Length > 0)
+{
+    <p style="color:red;">@Model.ErrorMessage</p>
+}

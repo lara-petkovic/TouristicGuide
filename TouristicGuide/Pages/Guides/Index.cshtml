@@ -1,0 +1,37 @@
+﻿@page
+@model TouristicGuide.Pages.Guides.IndexModel
+@{
+}
+
+<h2>Guides list</h2>
+<br />
+
+<a class="btn btn-primary btn-sm" href="/Guides/Create">New guide</a>
+
+<table border="1">
+    <tr>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Birthday</th>
+        <th>Phone</th>
+        <th>Languages</th>
+    </tr>
+    @foreach(var guide in Model.Guides)
+    {
+        <tr>
+            <td>@guide.Username</td>
+            <td>@guide.FirstName</td>
+            <td>@guide.LastName</td>
+            <td>@guide.Email</td>
+            <td>@guide.Birthday.ToShortDateString()</td>
+            <td>@guide.Phone</td>
+            <td>@guide.Languages</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="/Guides/Edit?id=@guide.Username">Edit</a>
+                <a class="btn btn-danger btn-sm" href="/Guides/Delete?id=@guide.Username">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
