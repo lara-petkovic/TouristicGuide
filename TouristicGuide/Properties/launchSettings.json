@@ -4,17 +4,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:35167",
+      "applicationUrl": "http://localhost:33144",
       "sslPort": 0
     }
   },
   "profiles": {
-    "Touristic_App": {
+    "TouristicGuide": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5231",
+      "applicationUrl": "http://localhost:5245",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
