@@ -18,7 +18,7 @@ namespace TouristicGuide.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //If i have many to many classes i would need to have a class between them.The code for this you could find at https://www.youtube.com/watch?v=EmV_IBYIlyo&list=PL82C6-O4XrHdiS10BLh23x71ve9mQCln0&index=5
+            //If i have many to many classes I would need to have a class between them. The code for this I could find at https://www.youtube.com/watch?v=EmV_IBYIlyo&list=PL82C6-O4XrHdiS10BLh23x71ve9mQCln0&index=5
         }
     }
 }
