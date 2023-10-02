@@ -11,9 +11,25 @@ namespace TouristicGuide.Repository
         { 
             _context = context;
         }
+
+        public User GetUser(int id)
+        {
+            return _context.Users.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public User GetUser(string username)
+        {
+            return _context.Users.Where(x => x.Username.Equals(username)).FirstOrDefault();
+        }
+
         public ICollection<User> GetUsers()
         {
             return _context.Users.OrderBy(x => x.Id).ToList();
+        }
+
+        public bool UserExists(int id)
+        {
+            return _context.Users.Any(x => x.Id == id);
         }
     }
 }

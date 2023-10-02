@@ -25,5 +25,23 @@ namespace TouristicGuide.Controllers
             }
             return Ok(users);
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(User))]
+        [ProducesResponseType(400)]
+        public IActionResult GetUser(int id)
+        {
+            if(!_userRepository.UserExists(id))
+            {
+                return NotFound();
+            }
+
+            var user = _userRepository.GetUser(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(user);
+        }
     }
 }
