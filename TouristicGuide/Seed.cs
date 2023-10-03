@@ -18,77 +18,61 @@ namespace TouristicGuide
         {
             if (!dataContext.Tours.Any())
             {
-                var users = new List<User>
-                {
-                    new User
-                    {
-                        Username = "lara",
-                        Password = "lara",
-                        Name = "Lara",
-                        Surname = "Petkovic",
-                        Appointments = new List<Appointment>()
-                    },
-                    new User
-                    {
-                        Username = "luka",
-                        Password = "luka",
-                        Name = "Luka",
-                        Surname = "Petkovic",
-                        Appointments = new List<Appointment>()
-                    },
-                };
+                //var user = new User
+                //{
+                //        Id = 1,
+                //        Username = "luka",
+                //        Password = "luka",
+                //        Name = "Luka",
+                //        Surname = "Petronijevic"
+                    
+                //};
 
-                var locations = new List<Location>
-                {
-                    new Location
-                    {
-                        City = "Novi Sad",
-                        Country = "Serbia"
-                    },
-                    new Location
-                    {
-                        City = "Paris",
-                        Country = "France"
-                    },
-                };
+                //var tours = new List<Tour>
+                //    {
+                //        new Tour
+                //        {
+                //            Id = 1,
+                //            LocationId = 1,
+                //            Name = "Novi Sad City Tour",
+                //            Description = "Explore the Petrovaradin Fortress"
+                //        },
+                //        new Tour
+                //        {
+                //            Id = 2,
+                //            LocationId = 3,
+                //            Name = "Nevesinje Tour",
+                //            Description = "Experience the City of Sport"
+                //        },
+                //    };
 
-                var tours = new List<Tour>
-                {
-                    new Tour
-                    {
-                        User = users[0],
-                        Location = locations[0],
-                        Name = "Novi Sad City Tour",
-                        Description = "Explore the Petrovaradin Fortress",
-                    },
-                    new Tour
-                    {
-                        User = users[1],
-                        Location = locations[1],
-                        Name = "Paris City Tour",
-                        Description = "Experience the City of Love",
-                    },
-                };
+                //    var appointments = new List<Appointment>
+                //    {
+                //        new Appointment
+                //        {
+                //            Tour = tours[0],
+                //            DateTime = new DateTime(2025,10,22,10,30,0)
+                //        },
+                //        new Appointment
+                //        {
+                //            Tour = tours[1],
+                //            DateTime = new DateTime(2024,1,22,11,00,0)
+                //        },
+                //    };
 
-                var appointments = new List<Appointment>
-                {
-                    new Appointment
-                    {
-                        Tour = tours[0],
-                        DateTime = new DateTime(2025,10,22,10,30,0)
-                    },
-                    new Appointment
-                    {
-                        Tour = tours[1],
-                        DateTime = new DateTime(2024,1,22,11,00,0)
-                    },
-                };
+                //    dataContext.Users.Add(user);
+                //    dataContext.Locations.AddRange(locations);
+                //dataContext.Tours.Add(tours[0]);
+                //    dataContext.Appointments.AddRange(appointments);
 
-                dataContext.Users.AddRange(users);
-                dataContext.Locations.AddRange(locations);
-                dataContext.Tours.AddRange(tours);
-                dataContext.Appointments.AddRange(appointments);
-                dataContext.SaveChanges();
+                //Location location = new Location
+                //{
+                //    City = "Nevesinje",
+                //    Country = "Bosnia and Herzegovina"
+                //};
+                //  dataContext.Locations.Add(location);
+                //dataContext.SaveChanges();
+                //}
             }
         }
     }

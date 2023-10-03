@@ -5,7 +5,7 @@ namespace Touristic_App.Models
 {
     public class User
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public String Username { get; set; }
         public string Password { get; set; }
         public String Name { get; set; }
