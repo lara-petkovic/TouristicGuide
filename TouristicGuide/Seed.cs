@@ -25,7 +25,7 @@ namespace TouristicGuide
                 //        Password = "luka",
                 //        Name = "Luka",
                 //        Surname = "Petronijevic"
-                    
+
                 //};
 
 
@@ -72,7 +72,43 @@ namespace TouristicGuide
                 //    City = "Nevesinje",
                 //    Country = "Bosnia and Herzegovina"
                 //};
-                //  dataContext.Locations.Add(location);
+
+                //Tour t = new Tour
+                //{
+                //    LocationId = 3,
+                //    Name = "Nevesinje Tour",
+                //    Description = "We are going to see the Velez mountain."
+                //};
+                //dataContext.Tours.Add(t);
+
+                //Appointment a = new Appointment
+                //{
+                //    Id = 1,
+                //    TourId = 1,
+                //    UserId = 1,
+                //    DateTime = new DateTime(2023, 10, 10, 12, 0, 0)
+                //};
+
+                //Because the code above didn't work, I entered this SQL code to SQLServer Menagment Studio and it worked.
+                //USE[guideDatabase]
+                //GO
+
+                //INSERT INTO[dbo].[TOURS]
+                //           ([ID]
+                //           , [LOCATIONID]
+                //           , [NAME]
+                //           , [DESCRIPTION])
+                //     VALUES
+                //           (2
+                //           , 3
+                //           , 'Nevesinje Tour'
+                //           , 'We are going to see Velez Mountain.')
+                //GO
+
+
+
+
+                //dataContext.Appointments.Add(a);
                 //dataContext.SaveChanges();
                 //}
             }
