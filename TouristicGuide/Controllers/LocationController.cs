@@ -25,5 +25,29 @@ namespace TouristicGuide.Controllers
             }
             return Ok(locations);
         }
+
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(Location))]
+        [ProducesResponseType(400)]
+        public IActionResult CreateLocation([FromBody] Location location) //If I have arguments, i would get them with -> FromQuery
+        {
+            if (location == null)
+            {
+                return BadRequest("Location object is null");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!_locationRepository.CreateLocation(location))
+            {
+                ModelState.AddModelError("", "Something went wrong with location saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return CreatedAtRoute("GetLocation", new { id = location.Id }, location);
+        }
     }
 }
