@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Touristic_App.Models;
+using TouristicGuide.DTO;
 using TouristicGuide.Interfaces;
 using TouristicGuide.Models;
 using TouristicGuide.Repository;
@@ -31,9 +32,9 @@ namespace TouristicGuide.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(Location))]
         [ProducesResponseType(400)]
-        public IActionResult CreateTour([FromQuery] int locationId, [FromBody] Tour tour) //If I have arguments, i would get them with -> FromQuery
+        public IActionResult CreateTour([FromQuery] int locationId, [FromBody] TourDTO tourDTO) //If I have arguments, i would get them with -> FromQuery
         {
-            if (tour == null)
+            if (tourDTO == null)
             {
                 return BadRequest("Location object is null");
             }
@@ -43,13 +44,20 @@ namespace TouristicGuide.Controllers
                 return BadRequest(ModelState);
             }
 
+            var tour = new Tour
+            {
+                Id = tourDTO.Id,
+                Name = tourDTO.Name,
+                Description = tourDTO.Description
+            };
+
             if (!_tourRepository.CreateTour(locationId, tour))
             {
                 ModelState.AddModelError("", "Something went wrong with tour saving");
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetTour", new { id = tour.Id }, tour);
+            return CreatedAtRoute("PostTour", new { id = tour.Id }, tour);
         }
     }
 }
