@@ -15,7 +15,7 @@ namespace TouristicGuide.Controllers
             _locationRepository = locationRepository;
         }
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Location>))]
+        [ProducesResponseType(200, Type = typeof(Location))]
         public IActionResult GetLocations()
         {
             var locations = _locationRepository.GetLocations();

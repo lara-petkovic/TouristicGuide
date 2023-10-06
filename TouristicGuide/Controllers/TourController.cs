@@ -18,7 +18,7 @@ namespace TouristicGuide.Controllers
             _tourRepository = tourRepository;
         }
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Tour>))]
+        [ProducesResponseType(200, Type = typeof(Tour))]
         public IActionResult GetTours()
         {
             var tours = _tourRepository.GetTours();
@@ -30,13 +30,13 @@ namespace TouristicGuide.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(201, Type = typeof(Location))]
+        [ProducesResponseType(201, Type = typeof(Tour))]
         [ProducesResponseType(400)]
         public IActionResult CreateTour([FromQuery] int locationId, [FromBody] TourDTO tourDTO) //If I have arguments, i would get them with -> FromQuery
         {
             if (tourDTO == null)
             {
-                return BadRequest("Location object is null");
+                return BadRequest("Tour object is null");
             }
 
             if (!ModelState.IsValid)

@@ -12,7 +12,6 @@ namespace TouristicGuide.Repository
         {
             _context = dataContext;
         }
-
         public bool AppointmentExists(int id)
         {
             return _context.Appointments.Any(x => x.Id == id);
@@ -31,6 +30,18 @@ namespace TouristicGuide.Repository
         public ICollection<Appointment> GetAppointments()
         {
             return _context.Appointments.OrderBy(a => a.Id).ToList();
+        }
+
+        public bool CreateAppointment(Appointment appointment)
+        {
+            _context.Add(appointment);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

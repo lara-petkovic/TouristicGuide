@@ -8,5 +8,7 @@ namespace TouristicGuide.Interfaces
         public Appointment GetAppointment(int id);
         public ICollection<Appointment> GetAppointmentsByUser(int userId);
         public bool AppointmentExists(int id);
+        public bool CreateAppointment(Appointment appointment);
+        public bool Save();
     }
 }
