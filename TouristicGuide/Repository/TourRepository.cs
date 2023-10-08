@@ -18,7 +18,7 @@ namespace TouristicGuide.Repository
             var location = _context.Locations.FirstOrDefault(x => x.Id == locationId);
             if (location == null)
                 return false;
-            tour.Location = location;//do i need this?
+            tour.Location = location; //do i need this?
             _context.Add(tour);
             return Save();
         }

@@ -32,7 +32,7 @@ namespace TouristicGuide.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(Tour))]
         [ProducesResponseType(400)]
-        public IActionResult CreateTour([FromQuery] int locationId, [FromBody] TourDTO tourDTO) //If I have arguments, i would get them with -> FromQuery
+        public IActionResult CreateTour([FromBody] TourDTO tourDTO)
         {
             if (tourDTO == null)
             {
@@ -48,10 +48,11 @@ namespace TouristicGuide.Controllers
             {
                 Id = tourDTO.Id,
                 Name = tourDTO.Name,
-                Description = tourDTO.Description
+                Description = tourDTO.Description,
+                LocationId = tourDTO.LocationId
             };
 
-            if (!_tourRepository.CreateTour(locationId, tour))
+            if (!_tourRepository.CreateTour(tour.LocationId, tour))
             {
                 ModelState.AddModelError("", "Something went wrong with tour saving");
                 return StatusCode(500, ModelState);
@@ -59,5 +60,6 @@ namespace TouristicGuide.Controllers
 
             return CreatedAtRoute("PostTour", new { id = tour.Id }, tour);
         }
+
     }
 }
