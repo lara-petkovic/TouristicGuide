@@ -45,7 +45,7 @@ namespace TouristicGuide.Controllers
                 ModelState.AddModelError("", "Something went wrong with appointment saving");
                 return StatusCode(500, ModelState);
             }
-            return Created("", appointment);
+            return Created("/api/appointment/" + appointment.Id.ToString(), appointment);
         }
     }
 }

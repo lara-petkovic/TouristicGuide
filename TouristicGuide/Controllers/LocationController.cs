@@ -49,7 +49,7 @@ namespace TouristicGuide.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Created("", location); //TODO
+            return Created("/api/location/" + location.Id.ToString(), location);
         }
     }
 }

@@ -70,7 +70,7 @@ namespace TouristicGuide.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Created("", user);
+            return Created("/api/user/" + user.Id.ToString(), user);
         }
     }
 }

@@ -60,7 +60,7 @@ namespace TouristicGuide.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Created("", tour);
+            return Created("/api/tour/" + tour.Id.ToString(), tour);
         }
 
     }
