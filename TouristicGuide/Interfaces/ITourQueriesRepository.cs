@@ -2,10 +2,8 @@
 
 namespace TouristicGuide.Interfaces
 {
-    public interface ITourRepository
+    public interface ITourQueriesRepository
     {
         public ICollection<Tour> GetTours();
-        public bool CreateTour (int locationId, Tour tour);
-        public bool Save();
     }
 }

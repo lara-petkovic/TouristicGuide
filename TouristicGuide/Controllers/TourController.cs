@@ -11,17 +11,19 @@ namespace TouristicGuide.Controllers
     [ApiController]
     public class TourController: Controller
     {
-        private readonly ITourRepository _tourRepository;
+        private readonly ITourQueriesRepository _tourQueriesRepo;
+        private readonly ITourCommandsRepository _tourCommandsRepo;
 
-        public TourController(ITourRepository tourRepository)
+        public TourController(ITourQueriesRepository tourQueriesRepo, ITourCommandsRepository tourCommandsRepo)
         {
-            _tourRepository = tourRepository;
+            _tourQueriesRepo = tourQueriesRepo;
+            _tourCommandsRepo = tourCommandsRepo;
         }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(Tour))]
         public IActionResult GetTours()
         {
-            var tours = _tourRepository.GetTours();
+            var tours = _tourQueriesRepo.GetTours();
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -52,13 +54,13 @@ namespace TouristicGuide.Controllers
                 LocationId = tourDTO.LocationId
             };
 
-            if (!_tourRepository.CreateTour(tour.LocationId, tour))
+            if (!_tourCommandsRepo.CreateTour(tour.LocationId, tour))
             {
                 ModelState.AddModelError("", "Something went wrong with tour saving");
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("PostTour", new { id = tour.Id }, tour);
+            return Created("", tour);
         }
 
     }

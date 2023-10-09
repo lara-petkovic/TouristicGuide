@@ -4,26 +4,18 @@ using TouristicGuide.Models;
 
 namespace TouristicGuide.Repository
 {
-    public class LocationRepository: ILocationRepository
+    public class LocationCommandsRepository: ILocationCommandsRepository
     {
         private readonly DataContext _context;
-
-        public LocationRepository(DataContext dataContext)
+        public LocationCommandsRepository(DataContext context)
         {
-            _context = dataContext;
+            _context = context;
         }
-
         public bool CreateLocation(Location location)
         {
             _context.Add(location);
             return Save();
         }
-
-        public ICollection<Location> GetLocations()
-        {
-            return _context.Locations.OrderBy(l => l.Id).ToList();
-        }
-
         public bool Save()
         {
             var saved = _context.SaveChanges();

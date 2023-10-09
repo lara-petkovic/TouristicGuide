@@ -11,17 +11,19 @@ namespace TouristicGuide.Controllers
     [ApiController]
     public class UserController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserQueriesRepository _userQueriesRepo;
+        private readonly IUserCommandsRepository _userCommandsRepo;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserQueriesRepository userQueriesRepo, IUserCommandsRepository userCommandsRepo)
         {
-            _userRepository = userRepository;
+            _userQueriesRepo = userQueriesRepo;
+            _userCommandsRepo = userCommandsRepo;
         }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
         { 
-            var users = _userRepository.GetUsers();
+            var users = _userQueriesRepo.GetUsers();
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -34,12 +36,12 @@ namespace TouristicGuide.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetUser(int id)
         {
-            if(!_userRepository.UserExists(id))
+            if(!_userQueriesRepo.UserExists(id))
             {
                 return NotFound();
             }
 
-            var user = _userRepository.GetUser(id);
+            var user = _userQueriesRepo.GetUser(id);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -62,13 +64,13 @@ namespace TouristicGuide.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!_userRepository.CreateUser(user))
+            if (!_userCommandsRepo.CreateUser(user))
             {
                 ModelState.AddModelError("", "Something went wrong with user saving");
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("PostUser", new { id = user.Id }, user);
+            return Created("", user);
         }
     }
 }

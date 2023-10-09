@@ -8,17 +8,19 @@ namespace TouristicGuide.Controllers
     [ApiController]
     public class AppointmentController: Controller
     {
-        private readonly IAppointmentRepository _appointmentRepository;
+        private readonly IAppointmentQueriesRepository _appointmentQueriesRepo;
+        private readonly IAppointmentCommandsRepository _appointmentCommandsRepo;
 
-        public AppointmentController(IAppointmentRepository appointmentRepository)
+        public AppointmentController(IAppointmentQueriesRepository appointmentQueriesRepository, IAppointmentCommandsRepository appointmentCommandsRepository)
         {
-            _appointmentRepository = appointmentRepository;
+            _appointmentQueriesRepo = appointmentQueriesRepository;
+            _appointmentCommandsRepo = appointmentCommandsRepository;
         }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(Appointment))]
         public IActionResult GetAppointments()
         {
-            var appointments = _appointmentRepository.GetAppointments();
+            var appointments = _appointmentQueriesRepo.GetAppointments();
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -38,12 +40,12 @@ namespace TouristicGuide.Controllers
             {
                 return BadRequest(ModelState);
             }
-            if (!_appointmentRepository.CreateAppointment(appointment))
+            if (!_appointmentCommandsRepo.CreateAppointment(appointment))
             {
                 ModelState.AddModelError("", "Something went wrong with appointment saving");
                 return StatusCode(500, ModelState);
             }
-            return CreatedAtRoute("PostAppointment", new {id = appointment.Id}, appointment);
+            return Created("", appointment);
         }
     }
 }

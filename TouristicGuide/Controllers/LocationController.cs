@@ -8,17 +8,19 @@ namespace TouristicGuide.Controllers
     [ApiController]
     public class LocationController: Controller
     {
-        private readonly ILocationRepository _locationRepository;
+        private readonly ILocationQueriesRepository _locationQueriesRepo;
+        private readonly ILocationCommandsRepository _locationCommandsRepo;
 
-        public LocationController(ILocationRepository locationRepository)
+        public LocationController(ILocationQueriesRepository locationQueriesRepo, ILocationCommandsRepository locationCommandsRepo)
         {
-            _locationRepository = locationRepository;
+            _locationQueriesRepo = locationQueriesRepo;
+            _locationCommandsRepo = locationCommandsRepo;
         }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(Location))]
         public IActionResult GetLocations()
         {
-            var locations = _locationRepository.GetLocations();
+            var locations = _locationQueriesRepo.GetLocations();
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -29,7 +31,7 @@ namespace TouristicGuide.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(Location))]
         [ProducesResponseType(400)]
-        public IActionResult CreateLocation([FromBody] Location location) //If I have arguments, i would get them with -> FromQuery
+        public IActionResult CreateLocation([FromBody] Location location)
         {
             if (location == null)
             {
@@ -41,13 +43,13 @@ namespace TouristicGuide.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!_locationRepository.CreateLocation(location))
+            if (!_locationCommandsRepo.CreateLocation(location))
             {
                 ModelState.AddModelError("", "Something went wrong with location saving");
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetLocation", new { id = location.Id }, location);
+            return Created("", location); //TODO
         }
     }
 }

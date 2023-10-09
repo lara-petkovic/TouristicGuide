@@ -4,15 +4,14 @@ using TouristicGuide.Interfaces;
 
 namespace TouristicGuide.Repository
 {
-    public class TourRepository: ITourRepository
+    public class TourCommandsRepository: ITourCommandsRepository
     {
         private readonly DataContext _context;
 
-        public TourRepository(DataContext dataContext)
+        public TourCommandsRepository(DataContext dataContext)
         {
             _context = dataContext;
         }
-
         public bool CreateTour(int locationId, Tour tour)
         {
             var location = _context.Locations.FirstOrDefault(x => x.Id == locationId);
@@ -22,12 +21,6 @@ namespace TouristicGuide.Repository
             _context.Add(tour);
             return Save();
         }
-
-        public ICollection<Tour> GetTours()
-        {
-            return _context.Tours.OrderBy(x => x.Id).ToList();
-        }
-
         public bool Save()
         {
             var saved = _context.SaveChanges();

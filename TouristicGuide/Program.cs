@@ -13,10 +13,14 @@ builder.Services.AddTransient<Seed>();                          //added this
 
 
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-builder.Services.AddScoped<ITourRepository, TourRepository>();
-builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<IUserQueriesRepository, UserQueriesRepository>();
+builder.Services.AddScoped<IUserCommandsRepository, UserCommandsRepository>();
+builder.Services.AddScoped<IAppointmentQueriesRepository, AppointmentQueriesRepository>();
+builder.Services.AddScoped<IAppointmentCommandsRepository, AppointmentCommandsRepository>();
+builder.Services.AddScoped<ITourQueriesRepository, TourQueriesRepository>();
+builder.Services.AddScoped<ITourCommandsRepository, TourCommandsRepository>();
+builder.Services.AddScoped<ILocationCommandsRepository, LocationCommandsRepository>();
+builder.Services.AddScoped<ILocationQueriesRepository, LocationQueriesRepository>();
 
 
 
