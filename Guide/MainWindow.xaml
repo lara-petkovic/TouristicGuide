@@ -1,0 +1,15 @@
+﻿<Window x:Class="Guide.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Guide"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Add location" HorizontalAlignment="Left" Height="51" Margin="102,85,0,0" VerticalAlignment="Top" Width="104" Click="AddLocation_Click"/>
+        <Button Content="Add user" HorizontalAlignment="Left" Height="51" Margin="260,85,0,0" VerticalAlignment="Top" Width="104" Click="AddUser_Click"/>
+        <Button Content="Add tour" HorizontalAlignment="Left" Height="51" Margin="415,85,0,0" VerticalAlignment="Top" Width="104" Click="AddTour_Click"/>
+        <Button Content="Add appointment" HorizontalAlignment="Left" Height="51" Margin="564,85,0,0" VerticalAlignment="Top" Width="104" Click="AddAppointment_Click"/>
+    </Grid>
+</Window>
