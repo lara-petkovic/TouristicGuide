@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guide.Services;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -16,19 +17,32 @@ using System.Windows.Shapes;
 
 namespace Guide.View
 {
-    /// <summary>
-    /// Interaction logic for LocationWindow.xaml
-    /// </summary>
     public partial class LocationWindow : Window
     {
+        private LocationService locationService;
+        private Location location {  get; set; }
+
         public LocationWindow()
         {
             InitializeComponent();
+            locationService = new LocationService();
+            location = new Location();
+            DataContext = location;
         }
 
-        private void AddLocation_Click(object sender, RoutedEventArgs e)
+        private async void AddLocation_Click(object sender, RoutedEventArgs e)
         {
-            
+            Location createdLocation = await locationService.CreateLocation(location);
+
+            if (createdLocation != null)
+            {
+                MessageBox.Show("Location has been successfully created!");
+            }
+            else
+            {
+                MessageBox.Show("A problem occurred during location creation.");
+            }
+            Close();
         }
     }
 }

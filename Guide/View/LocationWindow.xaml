@@ -8,10 +8,10 @@
         Title="LocationWindow" Height="450" Width="800">
     <Grid>
         <Label Content="Add location" HorizontalAlignment="Left" Height="48" Margin="113,60,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="334,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="334,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="cityTextBox" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,153,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="countryTextBox" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,217,0,0" VerticalAlignment="Top" Width="154"/>
         <Label Content="City" HorizontalAlignment="Left" Height="48" Margin="113,140,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <Label x:Name="cityTextBox" Content="Country" HorizontalAlignment="Left" Height="48" Margin="113,217,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <Button x:Name="countryTextBox" Content="Add location" HorizontalAlignment="Left" Height="41" Margin="287,339,0,0" VerticalAlignment="Top" Width="113" Click="AddLocation_Click"/>
+        <Label Content="Country" HorizontalAlignment="Left" Height="48" Margin="113,217,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        <Button Content="Add location" HorizontalAlignment="Left" Height="41" Margin="287,339,0,0" VerticalAlignment="Top" Width="113" Click="AddLocation_Click"/>
     </Grid>
 </Window>
