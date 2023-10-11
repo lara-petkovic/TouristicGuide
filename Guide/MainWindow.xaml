@@ -7,9 +7,10 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Add location" HorizontalAlignment="Left" Height="51" Margin="102,85,0,0" VerticalAlignment="Top" Width="104" Click="AddLocation_Click"/>
-        <Button Content="Add user" HorizontalAlignment="Left" Height="51" Margin="260,85,0,0" VerticalAlignment="Top" Width="104" Click="AddUser_Click"/>
-        <Button Content="Add tour" HorizontalAlignment="Left" Height="51" Margin="415,85,0,0" VerticalAlignment="Top" Width="104" Click="AddTour_Click"/>
-        <Button Content="Add appointment" HorizontalAlignment="Left" Height="51" Margin="564,85,0,0" VerticalAlignment="Top" Width="104" Click="AddAppointment_Click"/>
+        <Label Content="INFO" HorizontalAlignment="Left" Height="65" Margin="333,29,0,0" VerticalAlignment="Top" Width="137" FontSize="48"/>
+        <Button Content="Location" HorizontalAlignment="Left" Height="51" Margin="105,122,0,0" VerticalAlignment="Top" Width="104" Click="AddLocation_Click"/>
+        <Button Content="User" HorizontalAlignment="Left" Height="51" Margin="263,122,0,0" VerticalAlignment="Top" Width="104" Click="AddUser_Click"/>
+        <Button Content="Tour" HorizontalAlignment="Left" Height="51" Margin="418,122,0,0" VerticalAlignment="Top" Width="104" Click="AddTour_Click"/>
+        <Button Content="Appointment" HorizontalAlignment="Left" Height="51" Margin="567,122,0,0" VerticalAlignment="Top" Width="104" Click="AddAppointment_Click"/>
     </Grid>
 </Window>

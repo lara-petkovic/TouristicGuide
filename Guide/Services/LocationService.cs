@@ -34,5 +34,19 @@ namespace Guide.Services
 
             return null;
         }
+
+        public async Task<List<Location>> GetAllLocations()
+        {
+            var response = await client.GetAsync("api/location");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string stringResponse = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<List<Location>>(stringResponse);
+            }
+
+            return new List<Location>();
+        }
+
     }
 }

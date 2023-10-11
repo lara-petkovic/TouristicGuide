@@ -2,6 +2,7 @@
 using Guide.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Guide.View
     {
         private LocationService locationService;
         private Location location {  get; set; }
+        public ObservableCollection<Location> Locations { get; set; }
 
         public LocationWindow()
         {
@@ -29,6 +31,26 @@ namespace Guide.View
             locationService = new LocationService();
             location = new Location();
             DataContext = location;
+            Locations = new ObservableCollection<Location>();
+
+            //LoadLocations();
+        }
+
+        private async void LoadLocations()
+        {
+            List<Location> allLocations = await locationService.GetAllLocations();
+
+            if (allLocations.Count > 0)
+            {
+                foreach (var loc in allLocations)
+                {
+                    Locations.Add(loc);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Failed to retrieve locations or no locations found.");
+            }
         }
 
         private async void AddLocation_Click(object sender, RoutedEventArgs e)
