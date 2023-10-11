@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace Guide.Models
+﻿namespace Guide.Models
 {
     public class Tour
     {

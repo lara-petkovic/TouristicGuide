@@ -14,8 +14,8 @@
 
         <TextBox Text="{Binding TourId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,153,0,0" VerticalAlignment="Top" Width="154"/>
         <TextBox Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,217,0,0" VerticalAlignment="Top" Width="154"/>
-        <DatePicker HorizontalAlignment="Left" Height="36" Margin="334,282,0,0" VerticalAlignment="Top" Width="154"/>
-        
+        <DatePicker SelectedDate="{Binding DateTime, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="334,282,0,0" VerticalAlignment="Top" Width="154"/>
+
         <Button Content="Add appointment" HorizontalAlignment="Left" Height="41" Margin="287,339,0,0" VerticalAlignment="Top" Width="113" Click="AddAppointment_Click"/>
     </Grid>
 </Window>
