@@ -1,0 +1,21 @@
+﻿<Window x:Class="Guide.View.TourWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Guide.View"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="TourWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Add tour" HorizontalAlignment="Left" Height="48" Margin="113,60,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        <Label Content="Location id" HorizontalAlignment="Left" Height="48" Margin="113,140,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        <Label Content="Name" HorizontalAlignment="Left" Height="48" Margin="113,217,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        <Label Content="Description" HorizontalAlignment="Left" Height="48" Margin="113,270,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        
+        <TextBox x:Name="descriptionTextBox" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="334,276,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="locationIdTextBox" Text="{Binding LocationId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,153,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="nameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,217,0,0" VerticalAlignment="Top" Width="154"/>
+
+        <Button Content="Add tour" HorizontalAlignment="Left" Height="41" Margin="287,339,0,0" VerticalAlignment="Top" Width="113" Click="AddTour_Click"/>
+    </Grid>
+</Window>

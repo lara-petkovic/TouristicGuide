@@ -1,0 +1,21 @@
+﻿<Window x:Class="Guide.View.AppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Guide.View"
+        mc:Ignorable="d"
+        Title="AppointmentWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Add appointment" HorizontalAlignment="Left" Height="48" Margin="113,60,0,0" VerticalAlignment="Top" Width="287" FontSize="22"/>
+        <Label Content="Tour id" HorizontalAlignment="Left" Height="48" Margin="113,140,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        <Label Content="user id" HorizontalAlignment="Left" Height="48" Margin="113,217,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        <Label Content="Date and time" HorizontalAlignment="Left" Height="48" Margin="113,270,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+
+        <TextBox Text="{Binding TourId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,153,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,217,0,0" VerticalAlignment="Top" Width="154"/>
+        <DatePicker HorizontalAlignment="Left" Height="36" Margin="334,282,0,0" VerticalAlignment="Top" Width="154"/>
+        
+        <Button Content="Add appointment" HorizontalAlignment="Left" Height="41" Margin="287,339,0,0" VerticalAlignment="Top" Width="113" Click="AddAppointment_Click"/>
+    </Grid>
+</Window>

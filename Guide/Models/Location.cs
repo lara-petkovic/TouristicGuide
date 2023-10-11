@@ -1,4 +1,4 @@
-﻿namespace Guide
+﻿namespace Guide.Models
 {
     public class Location
     {

@@ -1,4 +1,5 @@
-﻿using Guide.Services;
+﻿using Guide.Models;
+using Guide.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
