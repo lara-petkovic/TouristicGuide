@@ -15,5 +15,13 @@ namespace TouristicGuide.Repository
         {
             return _context.Locations.OrderBy(l => l.Id).ToList();
         }
+        public Location GetLocation(int id)
+        {
+            return _context.Locations.FirstOrDefault(l => l.Id == id);
+        }
+        public bool LocationExists(int id)
+        {
+            return _context.Locations.Any(l => l.Id == id);
+        }
     }
 }

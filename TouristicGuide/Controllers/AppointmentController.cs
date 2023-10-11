@@ -28,6 +28,24 @@ namespace TouristicGuide.Controllers
             return Ok(appointments);
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(Appointment))]
+        [ProducesResponseType(400)]
+        public IActionResult GetAppointment(int id)
+        {
+            if (!_appointmentQueriesRepo.AppointmentExists(id))
+            {
+                return NotFound();
+            }
+
+            var location = _appointmentQueriesRepo.GetAppointment(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(location);
+        }
+
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(Appointment))]
         public IActionResult PostAppointment(Appointment appointment)

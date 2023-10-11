@@ -31,6 +31,24 @@ namespace TouristicGuide.Controllers
             return Ok(tours);
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(Tour))]
+        [ProducesResponseType(400)]
+        public IActionResult GetTour(int id)
+        {
+            if (!_tourQueriesRepo.TourExists(id))
+            {
+                return NotFound();
+            }
+
+            var tour = _tourQueriesRepo.GetTour(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(tour);
+        }
+
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(Tour))]
         [ProducesResponseType(400)]

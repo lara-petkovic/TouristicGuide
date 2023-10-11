@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Touristic_App.Models;
 using TouristicGuide.Interfaces;
 using TouristicGuide.Models;
 
@@ -26,6 +27,24 @@ namespace TouristicGuide.Controllers
                 return BadRequest(ModelState);
             }
             return Ok(locations);
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(Location))]
+        [ProducesResponseType(400)]
+        public IActionResult GetLocation(int id)
+        {
+            if (!_locationQueriesRepo.LocationExists(id))
+            {
+                return NotFound();
+            }
+
+            var location = _locationQueriesRepo.GetLocation(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(location);
         }
 
         [HttpPost]
