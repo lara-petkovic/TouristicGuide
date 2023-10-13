@@ -16,6 +16,36 @@ namespace TouristicGuide.Repository
             _context.Add(location);
             return Save();
         }
+
+        public bool DeleteLocation(int id)
+        {
+            var locationToDelete = _context.Locations.FirstOrDefault(item => item.Id == id);
+
+            if (locationToDelete == null)
+            {
+                return false;
+            }
+
+            _context.Locations.Remove(locationToDelete);
+
+            return Save();
+        }
+
+        public bool UpdateLocation(Location location)
+        {
+            var locationToUpdate = _context.Locations.FirstOrDefault(item => item.Id == location.Id);
+
+            if (locationToUpdate == null)
+            {
+                return false;
+            }
+
+            locationToUpdate.City = location.City;
+            locationToUpdate.Country = location.Country;
+
+            return Save();
+        }
+
         public bool Save()
         {
             var saved = _context.SaveChanges();

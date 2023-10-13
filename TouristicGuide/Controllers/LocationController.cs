@@ -70,5 +70,57 @@ namespace TouristicGuide.Controllers
 
             return Created("/api/location/" + location.Id.ToString(), location);
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteLocation(int id)
+        {
+            if (!_locationQueriesRepo.LocationExists(id))
+            {
+                return NotFound();
+            }
+
+            if (!_locationCommandsRepo.DeleteLocation(id))
+            {
+                ModelState.AddModelError("", "Something went wrong with location deletion");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateLocation(int id, [FromBody] Location location)
+        {
+            if (location == null)
+            {
+                return BadRequest("Location object is null");
+            }
+
+            if (!_locationQueriesRepo.LocationExists(id))
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            location.Id = id;
+
+            if (!_locationCommandsRepo.UpdateLocation(location))
+            {
+                ModelState.AddModelError("", "Something went wrong with location update");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
     }
 }

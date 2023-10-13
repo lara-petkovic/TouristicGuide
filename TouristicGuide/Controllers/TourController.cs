@@ -81,5 +81,56 @@ namespace TouristicGuide.Controllers
             return Created("/api/tour/" + tour.Id.ToString(), tour);
         }
 
+        [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteTour(int id)
+        {
+            if (!_tourQueriesRepo.TourExists(id))
+            {
+                return NotFound();
+            }
+
+            if (!_tourCommandsRepo.DeleteTour(id))
+            {
+                ModelState.AddModelError("", "Something went wrong with tour deletion");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateTour(int id, [FromBody] Tour tour)
+        {
+            if (tour == null)
+            {
+                return BadRequest("Tour object is null");
+            }
+
+            if (!_tourQueriesRepo.TourExists(id))
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            tour.Id = id;
+
+            if (!_tourCommandsRepo.UpdateTour(tour))
+            {
+                ModelState.AddModelError("", "Something went wrong with tour update");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
     }
 }
