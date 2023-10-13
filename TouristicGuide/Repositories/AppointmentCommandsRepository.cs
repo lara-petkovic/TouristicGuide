@@ -17,6 +17,33 @@ namespace TouristicGuide.Repository
             _context.Add(appointment);
             return Save();
         }
+        public bool UpdateAppointment(Appointment appointment)
+        {
+            var appoitnmentToUpdate = _context.Appointments.FirstOrDefault(item => item.Id == appointment.Id);
+
+            if (appoitnmentToUpdate == null)
+            {
+                return false;
+            }
+
+            appoitnmentToUpdate.TourId = appointment.TourId;
+            appoitnmentToUpdate.Tour = appointment.Tour;
+            appoitnmentToUpdate.UserId = appointment.UserId;
+            appoitnmentToUpdate.DateTime = appointment.DateTime;
+
+            return Save();
+        }
+        public bool DeleteAppointment(int id)
+        {
+            var appointmentToDelete = _context.Appointments.FirstOrDefault(item => item.Id == id);
+
+            if (appointmentToDelete == null)
+            {
+                return false;
+            }
+            _context.Appointments.Remove(appointmentToDelete);
+            return Save();
+        }
         public bool Save()
         {
             var saved = _context.SaveChanges();

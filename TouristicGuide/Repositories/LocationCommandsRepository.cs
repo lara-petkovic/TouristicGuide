@@ -16,21 +16,6 @@ namespace TouristicGuide.Repository
             _context.Add(location);
             return Save();
         }
-
-        public bool DeleteLocation(int id)
-        {
-            var locationToDelete = _context.Locations.FirstOrDefault(item => item.Id == id);
-
-            if (locationToDelete == null)
-            {
-                return false;
-            }
-
-            _context.Locations.Remove(locationToDelete);
-
-            return Save();
-        }
-
         public bool UpdateLocation(Location location)
         {
             var locationToUpdate = _context.Locations.FirstOrDefault(item => item.Id == location.Id);
@@ -45,7 +30,17 @@ namespace TouristicGuide.Repository
 
             return Save();
         }
+        public bool DeleteLocation(int id)
+        {
+            var locationToDelete = _context.Locations.FirstOrDefault(item => item.Id == id);
 
+            if (locationToDelete == null)
+            {
+                return false;
+            }
+            _context.Locations.Remove(locationToDelete);
+            return Save();
+        }
         public bool Save()
         {
             var saved = _context.SaveChanges();

@@ -65,5 +65,56 @@ namespace TouristicGuide.Controllers
             }
             return Created("/api/appointment/" + appointment.Id.ToString(), appointment);
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteAppointment(int id)
+        {
+            if (!_appointmentQueriesRepo.AppointmentExists(id))
+            {
+                return NotFound();
+            }
+
+            if (!_appointmentCommandsRepo.DeleteAppointment(id))
+            {
+                ModelState.AddModelError("", "Something went wrong with appointment deletion");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateAppointment(int id, [FromBody] Appointment appointment)
+        {
+            if (appointment == null)
+            {
+                return BadRequest("Appointment object is null");
+            }
+
+            if (!_appointmentQueriesRepo.AppointmentExists(id))
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            appointment.Id = id;
+
+            if (!_appointmentCommandsRepo.UpdateAppointment(appointment))
+            {
+                ModelState.AddModelError("", "Something went wrong with appointment update");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

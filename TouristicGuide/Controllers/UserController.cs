@@ -72,5 +72,55 @@ namespace TouristicGuide.Controllers
 
             return Created("/api/user/" + user.Id.ToString(), user);
         }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateUser(int id, [FromBody] User user)
+        {
+            if (!_userQueriesRepo.UserExists(id))
+            { 
+                return NotFound(); 
+            }
+
+            if(user == null)
+            {
+                return BadRequest("User object is null");
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            user.Id = id;
+
+            if (!_userCommandsRepo.UpdateUser(user))
+            {
+                ModelState.AddModelError("", "Something went wrong with user update");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteUser(int id)
+        {
+            if(!_userQueriesRepo.UserExists(id))
+            {
+                return NotFound();
+            }
+            if (!_userCommandsRepo.DeleteUser(id))
+            {
+                ModelState.AddModelError("", "Something went wrong with user deletion");
+                return StatusCode(500, ModelState);
+            }
+            return NoContent();
+        }
+
     }
 }
