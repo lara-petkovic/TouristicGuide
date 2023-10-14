@@ -17,6 +17,7 @@ namespace TouristicGuide.Controllers
             _locationQueriesRepo = locationQueriesRepo;
             _locationCommandsRepo = locationCommandsRepo;
         }
+
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(Location))]
         public IActionResult GetLocations()

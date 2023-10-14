@@ -13,13 +13,8 @@
         <Label Content="City" HorizontalAlignment="Left" Height="48" Margin="20,113,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
         <Label Content="Country" HorizontalAlignment="Left" Height="48" Margin="20,190,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
         <Button Content="Add location" HorizontalAlignment="Left" Height="41" Margin="96,289,0,0" VerticalAlignment="Top" Width="112" Click="AddLocation_Click"/>
-        <DataGrid HorizontalAlignment="Left" Height="179" Margin="400,75,0,0" VerticalAlignment="Top" Width="363"
-          ItemsSource="{Binding Locations, UpdateSourceTrigger=PropertyChanged}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
-                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*" />
-                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*" />
-            </DataGrid.Columns>
+        <DataGrid HorizontalAlignment="Left" Height="215" Margin="400,75,0,0" VerticalAlignment="Top" Width="256"
+                  ItemsSource="{Binding Locations, UpdateSourceTrigger=PropertyChanged}">
         </DataGrid>
     </Grid>
 </Window>

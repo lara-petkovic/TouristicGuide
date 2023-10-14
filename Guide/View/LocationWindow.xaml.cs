@@ -24,37 +24,33 @@ namespace Guide.View
         private LocationService locationService;
         private Location location {  get; set; }
         public ObservableCollection<Location> Locations { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
 
         public LocationWindow()
         {
             InitializeComponent();
             locationService = new LocationService();
             location = new Location();
-            DataContext = location;
+            DataContext = this;
             Locations = new ObservableCollection<Location>();
 
-            //LoadLocations();
+            LoadLocationsAsync();
         }
 
-        private async void LoadLocations()
+        private async void LoadLocationsAsync()
         {
-            List<Location> allLocations = await locationService.GetAllLocations();
-
-            if (allLocations.Count > 0)
+            List<Location> locations = await locationService.GetAllLocations();
+            foreach (var loc in locations)
             {
-                foreach (var loc in allLocations)
-                {
-                    Locations.Add(loc);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Failed to retrieve locations or no locations found.");
+                Locations.Add(loc);
             }
         }
 
         private async void AddLocation_Click(object sender, RoutedEventArgs e)
         {
+            location.City = City;
+            location.Country = Country;
             Location createdLocation = await locationService.CreateLocation(location);
 
             if (createdLocation != null)
@@ -65,7 +61,8 @@ namespace Guide.View
             {
                 MessageBox.Show("A problem occurred during location creation.");
             }
-            Close();
+            Locations.Clear();
+            LoadLocationsAsync();
         }
     }
 }
