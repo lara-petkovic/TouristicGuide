@@ -8,11 +8,13 @@
         Title="LocationWindow" Height="450" Width="800">
     <Grid>
         <Label Content="Add location" HorizontalAlignment="Left" Height="48" Margin="67,51,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <TextBox x:Name="tb1" Text="{Binding cityTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="112,126,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBox x:Name="tb2" Text="{Binding countryTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="112,190,0,0" VerticalAlignment="Top" Width="154"/>
         <Label Content="City" HorizontalAlignment="Left" Height="48" Margin="20,113,0,0" VerticalAlignment="Top" Width="64" FontSize="22"/>
         <Label Content="Country" HorizontalAlignment="Left" Height="48" Margin="20,190,0,0" VerticalAlignment="Top" Width="87" FontSize="22"/>
+        
+        <TextBox x:Name="tb1" Text="{Binding cityTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="112,126,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="tb2" Text="{Binding countryTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="112,190,0,0" VerticalAlignment="Top" Width="154"/>
         <Button Content="Add location" HorizontalAlignment="Left" Height="41" Margin="96,289,0,0" VerticalAlignment="Top" Width="112" Click="AddLocation_Click"/>
+        
         <DataGrid HorizontalAlignment="Left" Height="215" Margin="400,75,0,0" VerticalAlignment="Top" Width="324"
           ItemsSource="{Binding Locations, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Hidden" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -39,8 +41,8 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        
         <Button x:Name="updateButton" Content="Save changes" HorizontalAlignment="Left" Height="41" Margin="96,289,0,0" VerticalAlignment="Top" Width="112" Click="SaveChanges_Click"/>
         <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Height="41" Margin="220,289,0,0" VerticalAlignment="Top" Width="112" Click="Cancel_Click"/>
-
     </Grid>
 </Window>

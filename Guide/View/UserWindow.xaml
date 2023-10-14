@@ -8,16 +8,48 @@
         Title="UserWindow" Height="450" Width="800">
     <Grid>
         <Label Content="Add user" HorizontalAlignment="Left" Height="48" Margin="113,60,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <Label Content="Username" HorizontalAlignment="Left" Height="48" Margin="113,121,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <Label Content="Password" HorizontalAlignment="Left" Height="48" Margin="113,185,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <Label Content="Name" HorizontalAlignment="Left" Height="48" Margin="113,238,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
-        <Label Content="Surname" HorizontalAlignment="Left" Height="48" Margin="113,285,0,0" VerticalAlignment="Top" Width="151" FontSize="22"/>
+        <Label Content="Username" HorizontalAlignment="Left" Height="48" Margin="29,116,0,0" VerticalAlignment="Top" Width="124" FontSize="22"/>
+        <Label Content="Password" HorizontalAlignment="Left" Height="48" Margin="29,180,0,0" VerticalAlignment="Top" Width="105" FontSize="22"/>
+        <Label Content="Name" HorizontalAlignment="Left" Height="48" Margin="29,233,0,0" VerticalAlignment="Top" Width="75" FontSize="22"/>
+        <Label Content="Surname" HorizontalAlignment="Left" Height="48" Margin="29,280,0,0" VerticalAlignment="Top" Width="105" FontSize="22"/>
 
-        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,121,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="35" Margin="334,185,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="334,244,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBox Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="334,291,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="tb1" Text="{Binding usernameTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="158,122,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="tb2" Text="{Binding passwordTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="158,186,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="tb3" Text="{Binding nameTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="158,245,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="tb4" Text="{Binding surnameTextBox, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="36" Margin="158,292,0,0" VerticalAlignment="Top" Width="154"/>
 
-        <Button Content="Add user" HorizontalAlignment="Left" Height="41" Margin="287,339,0,0" VerticalAlignment="Top" Width="113" Click="AddUser_Click"/>
+        <Button Content="Add user" HorizontalAlignment="Left" Height="41" Margin="76,357,0,0" VerticalAlignment="Top" Width="112" Click="AddUser_Click"/>
+
+        <DataGrid HorizontalAlignment="Left" Height="257" Margin="337,71,0,0" VerticalAlignment="Top" Width="453" HorizontalScrollBarVisibility="Hidden" CanUserAddRows="False"
+                  ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="24" />
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="80" />
+                <DataGridTextColumn Header="Password" Binding="{Binding Password}" Width="86" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="80" />
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="110" />
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="UpdateUser_Click" Tag="{Binding Id}">
+                                <Image Source="https://cdn-icons-png.flaticon.com/512/860/860814.png" Width="16" Height="16" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="RemoveUser_Click" Tag="{Binding Id}">
+                                <Image Source="https://cdn-icons-png.flaticon.com/128/860/860829.png" Width="16" Height="16" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="updateButton" Content="Save changes" HorizontalAlignment="Left" Height="41" Margin="76,357,0,0" VerticalAlignment="Top" Width="112" Click="SaveChanges_Click"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Height="41" Margin="218,357,0,0" VerticalAlignment="Top" Width="112" Click="Cancel_Click"/>
     </Grid>
 </Window>

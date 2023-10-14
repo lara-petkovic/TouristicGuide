@@ -57,10 +57,8 @@ namespace Guide.Services
                         }
                     }
                 }
-
                 return locations;
             }
-
             return new List<Location>();
         }
 

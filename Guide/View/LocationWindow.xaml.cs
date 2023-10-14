@@ -19,13 +19,17 @@ namespace Guide.View
         public LocationWindow()
         {
             InitializeComponent();
-            locationService = new LocationService();
             DataContext = this;
+            locationService = new LocationService();
             Locations = new ObservableCollection<Location>();
+            SetButtons();
+            LoadLocationsAsync();
+        }
+
+        private void SetButtons()
+        {
             cancelButton.Visibility = Visibility.Hidden;
             updateButton.Visibility = Visibility.Hidden;
-
-            LoadLocationsAsync();
         }
 
         private async void LoadLocationsAsync()
