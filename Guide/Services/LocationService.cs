@@ -64,6 +64,21 @@ namespace Guide.Services
             return new List<Location>();
         }
 
+        public async Task<bool> UpdateLocation(Location location)
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(location);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+            var response = await client.PutAsync($"api/location/{location.Id}", content);
+
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> DeleteLocation(int locationId)
+        {
+            var response = await client.DeleteAsync($"api/location/{locationId}");
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }
