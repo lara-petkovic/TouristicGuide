@@ -41,7 +41,3 @@ To get started with this project, follow these steps:
 ## Menthor
 
 Ph.D. Sandor Beretka, Schneider Electric
-
-## Issues and Feedback
-
-If you encounter any issues or have feedback regarding this project, please open an issue on the repository. Your input is valuable and can help improve the project.
